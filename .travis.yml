@@ -7,10 +7,12 @@ services:
 
 language:
   - 'bash'
-  
-# prepare the machine before any code
-# installation scripts
+
+env:
+  - QEMU_VERSION=v2.9.1-1
+
 before_install:
+  # prepare the machine before any code installation scripts
   - './.travis/main.sh'
   # Prepare qemu
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
@@ -18,29 +20,17 @@ before_install:
   - mkdir tmp
   - >
     pushd tmp &&
-    curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/qemu-arm-static.tar.gz &&
+    curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/$QEMU_VERSION/qemu-arm-static.tar.gz &&
     tar xzf qemu-arm-static.tar.gz &&
-    curl -L -o qemu-aarch64-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/qemu-aarch64-static.tar.gz &&
+    curl -L -o qemu-aarch64-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/$QEMU_VERSION/qemu-aarch64-static.tar.gz &&
     tar xzf qemu-aarch64-static.tar.gz &&
     popd
+  - docker manifest
 
-# first execute the test suite.
-# after the test execution is done and didn't
-# fail, build the images (if this step fails
-# the whole Travis build is considered a failure).
 script:
   - 'make test'
   - 'make image'
- 
-  
-# only execute the following instructions in
-# the case of a success (failing at this point
-# won't mark the build as a failure).
-# To have `DOCKER_USERNAME` and `DOCKER_PASSWORD`
-# filled you need to either use `travis`' cli 
-# and then `travis set ..` or go to the travis
-# page of your repository and then change the 
-# environment in the settings pannel.
+
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
       echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin ;
