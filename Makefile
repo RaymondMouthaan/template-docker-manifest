@@ -1,4 +1,4 @@
-IMAGE := docker-manifest-arm-linux
+IMAGE := raymondmm/docker-manifest-arm-linux
 VERSION := v1.2.3
 
 test:
