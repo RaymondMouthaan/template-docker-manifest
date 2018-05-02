@@ -1,4 +1,4 @@
-IMAGE := raymondmm/docker-manifest-arm-linux
+IMAGE := raymondmm/docker-manifest
 VERSION := v1.2.3
 
 test:
@@ -16,11 +16,11 @@ push-image:
 
 manifest-list-image:
 	docker manifest create "$(IMAGE):$(VERSION)" \
-	"$(IMAGE):linux-arm-$(VERSION)"
+		"$(IMAGE):linux-arm-$(VERSION)"
 	docker manifest annotate "$(IMAGE):$(VERSION)" "$(IMAGE):linux-arm-$(VERSION)" --os=linux --arch=arm --variant=v6
 	docker manifest push "$(IMAGE):$(VERSION)"
 	docker manifest create "$(IMAGE):latest" \
-	"${IMG_NAME}:linux-arm-latest"
+		"$(IMG_NAME):linux-arm-latest"
 	docker manifest annotate "$(IMAGE):latest" "$(IMAGE):linux-arm-latest" --os=linux --arch=arm --variant=v6
 	docker manifest push "$(IMAGE):latest"
 
