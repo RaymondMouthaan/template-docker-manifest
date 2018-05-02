@@ -1,0 +1,5 @@
+FROM amd64/alpine
+
+LABEL maintainer="Raymond Mouthaan <raymondmmouthaan@gmail.com>"
+
+RUN apk update
