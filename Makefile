@@ -6,7 +6,7 @@ test:
 
 build-image:
 	docker build --file Dockerfile.linux-arm32v6 --tag $(IMAGE):linux-arm32v6-latest .
-	docker build --file Dockerfile.linux-arm32v7 --tag $(IMAGE):linux-arm-latest .
+	docker build --file Dockerfile.linux-arm32v7 --tag $(IMAGE):linux-arm32v7-latest .
 tag-image:
 	docker tag $(IMAGE):linux-arm32v6-latest $(IMAGE):linux-arm32v6-$(VERSION)
 	docker tag $(IMAGE):linux-arm32v7-latest $(IMAGE):linux-arm32v7-$(VERSION)
@@ -14,6 +14,8 @@ tag-image:
 push-image:
 	docker push $(IMAGE):linux-arm32v6-latest
 	docker push $(IMAGE):linux-arm32v6-$(VERSION)
+	docker push $(IMAGE):linux-arm32v7-latest
+	docker push $(IMAGE):linux-arm32v7-$(VERSION)
 
 manifest-list-image:
 	docker manifest create "$(IMAGE):$(VERSION)" \
