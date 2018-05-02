@@ -38,7 +38,7 @@ after_success:
       docker manifest create raymondmm/docker-manifest:v1 \
         docker-manifest-arm-linux:v1 ;
         
-      docker manifest annotate raymondmm/docker-manifest:v1raymondmm/docker-manifest-arm-linux --arch arm ;
+      docker manifest annotate raymondmm/docker-manifest:v1 raymondmm/docker-manifest-arm-linux --arch arm ;
       docker manifest push raymondmm/docker-manifest:v1 ;
       docker manifest inspect raymondmm/docker-manifest ;
     fi
