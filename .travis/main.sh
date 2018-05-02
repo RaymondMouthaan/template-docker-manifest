@@ -30,10 +30,12 @@ update_docker_configuration() {
   Updating docker configuration
   "
 
+  mkdir $HOME/.docker
+
   echo '{
     "experimental": "enabled"
   }' | sudo tee $HOME/.docker/config.json
-
+  
   echo '{
     "experimental": true,
     "storage-driver": "overlay2",
