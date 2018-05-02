@@ -8,7 +8,7 @@ build-image:
 	docker build --file Dockerfile.linux-arm32v6 --tag $(IMAGE):linux-arm-latest .
 
 tag-image:
-	docker tag $(IMAGE):linux-arm-latest ${IMG_NAME}:linux-arm-$(VERSION)
+	docker tag $(IMAGE):linux-arm-latest $(IMG_NAME):linux-arm-$(VERSION)
 
 push-image:
 	docker push $(IMAGE):linux-arm-latest
