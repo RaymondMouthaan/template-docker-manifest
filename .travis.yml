@@ -1,8 +1,7 @@
 # make use of vm's 
 sudo: 'required'
 
-# have the docker service set up (we'll
-# update it later)
+# have the docker service set up (we'll update it later)
 services:
   - 'docker'
 
@@ -18,7 +17,7 @@ before_install:
 script:
   - 'make test'
   - 'make image'
-
+  
 # only execute the following instructions in
 # the case of a success (failing at this point
 # won't mark the build as a failure).
@@ -29,7 +28,7 @@ script:
 # environment in the settings pannel.
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
+      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       make push-image ;
     fi
 
