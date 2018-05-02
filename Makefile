@@ -20,7 +20,7 @@ manifest-list-image:
 	docker manifest annotate "$(IMAGE):$(VERSION)" "$(IMAGE):linux-arm-$(VERSION)" --os=linux --arch=arm --variant=v6
 	docker manifest push "$(IMAGE):$(VERSION)"
 	docker manifest create "$(IMAGE):latest" \
-		"$(IMG_NAME):linux-arm-latest"
+		"$(IMAGE):linux-arm-latest"
 	docker manifest annotate "$(IMAGE):latest" "$(IMAGE):linux-arm-latest" --os=linux --arch=arm --variant=v6
 	docker manifest push "$(IMAGE):latest"
 
