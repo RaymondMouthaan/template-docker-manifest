@@ -5,6 +5,9 @@ sudo: 'required'
 services:
   - 'docker'
 
+language:
+  - 'bash'
+  
 # prepare the machine before any code
 # installation scripts
 before_install:
