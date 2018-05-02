@@ -12,6 +12,17 @@ language:
 # installation scripts
 before_install:
   - './.travis/main.sh'
+  # Prepare qemu
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  # Get qemu-arm-static binary
+  - mkdir tmp
+  - >
+    pushd tmp &&
+    curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/qemu-arm-static.tar.gz &&
+    tar xzf qemu-arm-static.tar.gz &&
+    curl -L -o qemu-aarch64-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/qemu-aarch64-static.tar.gz &&
+    tar xzf qemu-aarch64-static.tar.gz &&
+    popd
 
 # first execute the test suite.
 # after the test execution is done and didn't
@@ -20,6 +31,7 @@ before_install:
 script:
   - 'make test'
   - 'make image'
+ 
   
 # only execute the following instructions in
 # the case of a success (failing at this point
