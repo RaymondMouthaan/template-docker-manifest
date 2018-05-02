@@ -1,4 +1,4 @@
-IMAGE := raymondmm/docker-manifest
+IMAGE := docker-manifest-arm-linux:v1
 
 test:
 	true
