@@ -1,0 +1,8 @@
+FROM FROM arm32v6/alpine
+COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static
+
+LABEL maintainer="Raymond Mouthaan <raymondmmouthaan@gmail.com>"
+
+RUN set -x \
+  && apk update
+  
