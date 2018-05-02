@@ -5,7 +5,7 @@ test:
 	true
 
 build-image:
-        docker build --file Dockerfile.linux-amd64   --tag $(IMAGE):linux-amd64-latest .
+	docker build --file Dockerfile.linux-amd64 --tag $(IMAGE):linux-amd64-latest .
 	docker build --file Dockerfile.linux-arm32v6 --tag $(IMAGE):linux-arm32v6-latest .
 	docker build --file Dockerfile.linux-arm32v7 --tag $(IMAGE):linux-arm32v7-latest .
 	
