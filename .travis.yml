@@ -16,7 +16,6 @@ before_install:
   - './.travis/main.sh'
   # Prepare qemu
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  # Get qemu-arm-static binary
   - mkdir tmp
   - >
     pushd tmp &&
@@ -27,7 +26,7 @@ before_install:
     popd
 
 script:
-  - 'make test'
+#  - 'make test'
   - 'make build-image'
   - 'make tag-image'
 
