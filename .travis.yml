@@ -28,19 +28,14 @@ before_install:
 
 script:
   - 'make test'
-  - 'make image'
+  - 'make build-image'
+  - 'make tag-image'
 
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
       echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin ;
       make push-image ;
-      
-      docker manifest create raymondmm/docker-manifest:v1 \
-        docker-manifest-arm-linux:v1 ;
-        
-      docker manifest annotate raymondmm/docker-manifest:v1 raymondmm/docker-manifest-arm-linux --arch arm ;
-      docker manifest push raymondmm/docker-manifest:v1 ;
-      docker manifest inspect raymondmm/docker-manifest ;
+      make manifest-list-image ;
     fi
 
 # don't notify me when things fail
