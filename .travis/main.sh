@@ -34,7 +34,7 @@ update_docker_configuration() {
 
   echo '{
     "experimental": "enabled"
-  }' | sudo tee $HOME/.docker/config.json
+  }' | tee $HOME/.docker/config.json
   
   echo '{
     "experimental": true,
