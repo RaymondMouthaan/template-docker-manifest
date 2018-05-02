@@ -1,5 +1,5 @@
 IMAGE := raymondmm/docker-manifest
-VERSION := v1.2.4
+VERSION := v1.2.5
 
 test:
 	true
