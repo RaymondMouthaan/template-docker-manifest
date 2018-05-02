@@ -20,16 +20,7 @@ setup_dependencies() {
   sudo apt install realpath python python-pip -y
   sudo apt install --only-upgrade docker-ce -y
   sudo pip install docker-compose || true
-
-  # Get qemu-arm-static binary
-  mkdir tmp
-  pushd tmp &&
-  curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/qemu-arm-static.tar.gz &&
-  tar xzf qemu-arm-static.tar.gz &&
-  curl -L -o qemu-aarch64-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/qemu-aarch64-static.tar.gz &&
-  tar xzf qemu-aarch64-static.tar.gz &&
-  popd
-
+  
   docker info
   docker-compose --version
 }
